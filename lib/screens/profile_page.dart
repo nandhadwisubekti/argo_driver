@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
 
 class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
+
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -34,23 +36,23 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   _editProfile() {
-    final _nameController = TextEditingController(text: _userName);
-    final _emailController = TextEditingController(text: _userEmail);
-    final _formKey = GlobalKey<FormState>();
+    final nameController = TextEditingController(text: _userName);
+    final emailController = TextEditingController(text: _userEmail);
+    final formKey = GlobalKey<FormState>();
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Edit Profil'),
+          title: const Text('Edit Profil'),
           content: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
-                  controller: _nameController,
-                  decoration: InputDecoration(
+                  controller: nameController,
+                  decoration: const InputDecoration(
                     labelText: 'Nama Lengkap',
                     border: OutlineInputBorder(),
                   ),
@@ -61,11 +63,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextFormField(
-                  controller: _emailController,
+                  controller: emailController,
                   keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
@@ -85,30 +87,30 @@ class _ProfilePageState extends State<ProfilePage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Batal'),
+              child: const Text('Batal'),
             ),
             TextButton(
               onPressed: () async {
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   SharedPreferences prefs = await SharedPreferences.getInstance();
-                  await prefs.setString('userName', _nameController.text);
-                  await prefs.setString('userEmail', _emailController.text);
+                  await prefs.setString('userName', nameController.text);
+                  await prefs.setString('userEmail', emailController.text);
                   
                   setState(() {
-                    _userName = _nameController.text;
-                    _userEmail = _emailController.text;
+                    _userName = nameController.text;
+                    _userEmail = emailController.text;
                   });
                   
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Profil berhasil diperbarui'),
                       backgroundColor: Colors.green,
                     ),
                   );
                 }
               },
-              child: Text('Simpan'),
+              child: const Text('Simpan'),
             ),
           ],
         );
@@ -121,12 +123,12 @@ class _ProfilePageState extends State<ProfilePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Konfirmasi Logout'),
-          content: Text('Apakah Anda yakin ingin keluar dari aplikasi?'),
+          title: const Text('Konfirmasi Logout'),
+          content: const Text('Apakah Anda yakin ingin keluar dari aplikasi?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Batal'),
+              child: const Text('Batal'),
             ),
             TextButton(
               onPressed: () async {
@@ -138,7 +140,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   (route) => false,
                 );
               },
-              child: Text('Logout', style: TextStyle(color: Colors.red)),
+              child: const Text('Logout', style: TextStyle(color: Colors.red)),
             ),
           ],
         );
@@ -151,12 +153,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             // Profile Header
             Container(
-              padding: EdgeInsets.all(24),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue[600]!, Colors.blue[400]!],
@@ -171,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     width: 100,
                     height: 100,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
                       boxShadow: [
@@ -188,33 +190,33 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.blue[600],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   // User Info
                   Text(
                     _userName,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     _userEmail,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.white70,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     'Bergabung sejak $_joinDate',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Colors.white60,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Edit Button
                   ElevatedButton(
                     onPressed: _editProfile,
@@ -225,7 +227,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Icon(Icons.edit, size: 18),
@@ -237,7 +239,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             // Statistics Cards
             Row(
               children: [
@@ -249,7 +251,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     color: Colors.green,
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: _buildStatCard(
                     icon: Icons.straighten,
@@ -260,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildStatCard(
               icon: Icons.account_balance_wallet,
               title: 'Total Pendapatan',
@@ -268,10 +270,10 @@ class _ProfilePageState extends State<ProfilePage> {
               color: Colors.purple,
               isWide: true,
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             // Menu Options
             _buildMenuCard(),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             // Logout Button
             SizedBox(
               width: double.infinity,
@@ -284,7 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.logout, color: Colors.white),
@@ -320,7 +322,7 @@ class _ProfilePageState extends State<ProfilePage> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
           gradient: LinearGradient(
@@ -333,14 +335,14 @@ class _ProfilePageState extends State<ProfilePage> {
             ? Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: color,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(icon, color: Colors.white, size: 24),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -352,7 +354,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             color: Colors.grey[600],
                           ),
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Text(
                           value,
                           style: TextStyle(
@@ -369,14 +371,14 @@ class _ProfilePageState extends State<ProfilePage> {
             : Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: color,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(icon, color: Colors.white, size: 24),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
                     title,
                     style: TextStyle(
@@ -385,7 +387,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     value,
                     style: TextStyle(
@@ -408,7 +410,7 @@ class _ProfilePageState extends State<ProfilePage> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -420,14 +422,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Colors.blue[800],
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _buildMenuItem(
               icon: Icons.history,
               title: 'Riwayat Perjalanan',
               subtitle: 'Lihat riwayat perjalanan Anda',
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Fitur riwayat akan segera hadir')),
+                  const SnackBar(content: Text('Fitur riwayat akan segera hadir')),
                 );
               },
             ),
@@ -437,7 +439,7 @@ class _ProfilePageState extends State<ProfilePage> {
               subtitle: 'Lihat rating dan ulasan dari penumpang',
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Fitur rating akan segera hadir')),
+                  const SnackBar(content: Text('Fitur rating akan segera hadir')),
                 );
               },
             ),
@@ -447,7 +449,7 @@ class _ProfilePageState extends State<ProfilePage> {
               subtitle: 'Kelola metode pembayaran Anda',
               onTap: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Fitur pembayaran akan segera hadir')),
+                  const SnackBar(content: Text('Fitur pembayaran akan segera hadir')),
                 );
               },
             ),
@@ -459,8 +461,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text('Bantuan & Dukungan'),
-                    content: Text(
+                    title: const Text('Bantuan & Dukungan'),
+                    content: const Text(
                       'Untuk bantuan lebih lanjut, Anda dapat menghubungi:\n\n'
                       'Email: support@argodriver.com\n'
                       'Telepon: +62 21 1234 5678\n'
@@ -469,7 +471,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     actions: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: Text('Tutup'),
+                        child: const Text('Tutup'),
                       ),
                     ],
                   ),
@@ -492,7 +494,7 @@ class _ProfilePageState extends State<ProfilePage> {
       leading: Icon(icon, color: Colors.blue),
       title: Text(title),
       subtitle: Text(subtitle),
-      trailing: Icon(Icons.arrow_forward_ios, size: 16),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
   }

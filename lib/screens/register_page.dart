@@ -4,6 +4,8 @@ import 'login_page.dart';
 import 'home_page.dart';
 
 class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
   @override
   _RegisterPageState createState() => _RegisterPageState();
 }
@@ -34,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
       });
 
       // Simulasi proses registrasi
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
 
       // Simpan data user dan status login
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -70,13 +72,13 @@ class _RegisterPageState extends State<RegisterPage> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.blue),
+          icon: const Icon(Icons.arrow_back, color: Colors.blue),
           onPressed: () => Navigator.pop(context),
         ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -85,18 +87,18 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.person_add,
                         size: 60,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       'Daftar Akun Baru',
                       style: TextStyle(
@@ -105,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         color: Colors.blue[800],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Buat akun untuk mulai menggunakan aplikasi',
                       style: TextStyle(
@@ -117,7 +119,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Form Register
               Form(
                 key: _formKey,
@@ -128,7 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       controller: _nameController,
                       decoration: InputDecoration(
                         labelText: 'Nama Lengkap',
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: const Icon(Icons.person),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -145,14 +147,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Email Field
                     TextFormField(
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.email),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -169,14 +171,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Password Field
                     TextFormField(
                       controller: _passwordController,
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility : Icons.visibility_off,
@@ -203,14 +205,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Confirm Password Field
                     TextFormField(
                       controller: _confirmPasswordController,
                       obscureText: _obscureConfirmPassword,
                       decoration: InputDecoration(
                         labelText: 'Konfirmasi Password',
-                        prefixIcon: Icon(Icons.lock_outline),
+                        prefixIcon: const Icon(Icons.lock_outline),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscureConfirmPassword ? Icons.visibility : Icons.visibility_off,
@@ -237,7 +239,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     // Register Button
                     SizedBox(
                       width: double.infinity,
@@ -251,8 +253,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         child: _isLoading
-                            ? CircularProgressIndicator(color: Colors.white)
-                            : Text(
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : const Text(
                                 'Daftar',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -265,7 +267,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               // Login Link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -278,7 +280,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Masuk di sini',
                       style: TextStyle(
                         color: Colors.blue,

@@ -5,6 +5,8 @@ import 'profile_page.dart';
 import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -51,7 +53,7 @@ class _HomePageState extends State<HomePage> {
   _calculateFare() {
     if (_kmController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Masukkan jarak terlebih dahulu'),
           backgroundColor: Colors.red,
         ),
@@ -64,7 +66,7 @@ class _HomePageState extends State<HomePage> {
 
     if (km <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('Jarak harus lebih dari 0 km'),
           backgroundColor: Colors.red,
         ),
@@ -100,13 +102,13 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildHomeTab() {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // Header
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [Colors.blue[600]!, Colors.blue[400]!],
@@ -117,25 +119,25 @@ class _HomePageState extends State<HomePage> {
             ),
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.local_taxi,
                   size: 40,
                   color: Colors.white,
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Selamat datang, $_userName!',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
-                      Text(
+                      const Text(
                         'Hitung tarif perjalanan Anda',
                         style: TextStyle(
                           fontSize: 14,
@@ -146,13 +148,13 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.logout, color: Colors.white),
+                  icon: const Icon(Icons.logout, color: Colors.white),
                   onPressed: _logout,
                 ),
               ],
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           // Vehicle Selection
           Card(
             elevation: 4,
@@ -160,7 +162,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -172,12 +174,12 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue[800],
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Row(
                     children: [
                       Expanded(
                         child: RadioListTile<String>(
-                          title: Row(
+                          title: const Row(
                             children: [
                               Icon(Icons.motorcycle, color: Colors.blue),
                               SizedBox(width: 8),
@@ -198,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                         child: RadioListTile<String>(
-                          title: Row(
+                          title: const Row(
                             children: [
                               Icon(Icons.directions_car, color: Colors.blue),
                               SizedBox(width: 8),
@@ -223,7 +225,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // Input Fields
           Card(
             elevation: 4,
@@ -231,7 +233,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -243,14 +245,14 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue[800],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   // Distance Input
                   TextFormField(
                     controller: _kmController,
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     decoration: InputDecoration(
                       labelText: 'Total Jarak (km)',
-                      prefixIcon: Icon(Icons.straighten),
+                      prefixIcon: const Icon(Icons.straighten),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -258,14 +260,14 @@ class _HomePageState extends State<HomePage> {
                       fillColor: Colors.grey[50],
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   // Discount Input
                   TextFormField(
                     controller: _discountController,
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     decoration: InputDecoration(
                       labelText: 'Diskon (%)',
-                      prefixIcon: Icon(Icons.percent),
+                      prefixIcon: const Icon(Icons.percent),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
@@ -274,7 +276,7 @@ class _HomePageState extends State<HomePage> {
                       hintText: 'Opsional',
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   // Calculate Button
                   SizedBox(
                     width: double.infinity,
@@ -287,7 +289,7 @@ class _HomePageState extends State<HomePage> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Text(
+                      child: const Text(
                         'Hitung Tarif',
                         style: TextStyle(
                           fontSize: 16,
@@ -301,7 +303,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // Result
           if (_totalFare > 0)
             Card(
@@ -310,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -322,13 +324,13 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blue[800],
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     _buildResultRow('Kendaraan', _selectedVehicle),
                     _buildResultRow('Jarak', '${_kmController.text} km'),
                     _buildResultRow('Tarif Dasar', 'Rp ${_totalFare.toStringAsFixed(0)}'),
                     if (_discountAmount > 0)
                       _buildResultRow('Diskon (${_discountController.text}%)', '- Rp ${_discountAmount.toStringAsFixed(0)}'),
-                    Divider(thickness: 2),
+                    const Divider(thickness: 2),
                     _buildResultRow(
                       'Total Tarif',
                       'Rp ${_finalFare.toStringAsFixed(0)}',
@@ -338,7 +340,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // Tariff Info
           Card(
             elevation: 2,
@@ -346,7 +348,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(12),
             ),
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -358,20 +360,20 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.blue[800],
                     ),
                   ),
-                  SizedBox(height: 12),
-                  Text(
+                  const SizedBox(height: 12),
+                  const Text(
                     'Motor:',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text('• ≤ 5km: Rp 10.000'),
-                  Text('• > 5km: Rp 10.000 + (km × Rp 1.800)'),
-                  SizedBox(height: 8),
-                  Text(
+                  const Text('• ≤ 5km: Rp 10.000'),
+                  const Text('• > 5km: Rp 10.000 + (km × Rp 1.800)'),
+                  const SizedBox(height: 8),
+                  const Text(
                     'Mobil:',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text('• ≤ 4km: Rp 30.000'),
-                  Text('• > 4km: Rp 30.000 + (km × Rp 8.000)'),
+                  const Text('• ≤ 4km: Rp 30.000'),
+                  const Text('• > 4km: Rp 30.000 + (km × Rp 8.000)'),
                 ],
               ),
             ),
@@ -383,7 +385,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildResultRow(String label, String value, {bool isTotal = false}) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -410,7 +412,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _pages = [
+    final List<Widget> pages = [
       _buildHomeTab(),
       SettingPage(),
       ProfilePage(),
@@ -419,7 +421,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SafeArea(
-        child: _pages[_currentIndex],
+        child: pages[_currentIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -431,7 +433,7 @@ class _HomePageState extends State<HomePage> {
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',

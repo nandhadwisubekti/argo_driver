@@ -3,6 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'login_page.dart';
 
 class SettingPage extends StatefulWidget {
+  const SettingPage({super.key});
+
   @override
   _SettingPageState createState() => _SettingPageState();
 }
@@ -43,12 +45,12 @@ class _SettingPageState extends State<SettingPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Konfirmasi Logout'),
-          content: Text('Apakah Anda yakin ingin keluar dari aplikasi?'),
+          title: const Text('Konfirmasi Logout'),
+          content: const Text('Apakah Anda yakin ingin keluar dari aplikasi?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Batal'),
+              child: const Text('Batal'),
             ),
             TextButton(
               onPressed: () async {
@@ -60,7 +62,7 @@ class _SettingPageState extends State<SettingPage> {
                   (route) => false,
                 );
               },
-              child: Text('Logout', style: TextStyle(color: Colors.red)),
+              child: const Text('Logout', style: TextStyle(color: Colors.red)),
             ),
           ],
         );
@@ -69,25 +71,25 @@ class _SettingPageState extends State<SettingPage> {
   }
 
   _changePassword() {
-    final _currentPasswordController = TextEditingController();
-    final _newPasswordController = TextEditingController();
-    final _confirmPasswordController = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
+    final currentPasswordController = TextEditingController();
+    final newPasswordController = TextEditingController();
+    final confirmPasswordController = TextEditingController();
+    final formKey = GlobalKey<FormState>();
 
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Ubah Password'),
+          title: const Text('Ubah Password'),
           content: Form(
-            key: _formKey,
+            key: formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
-                  controller: _currentPasswordController,
+                  controller: currentPasswordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password Lama',
                     border: OutlineInputBorder(),
                   ),
@@ -98,11 +100,11 @@ class _SettingPageState extends State<SettingPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextFormField(
-                  controller: _newPasswordController,
+                  controller: newPasswordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Password Baru',
                     border: OutlineInputBorder(),
                   ),
@@ -116,11 +118,11 @@ class _SettingPageState extends State<SettingPage> {
                     return null;
                   },
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 TextFormField(
-                  controller: _confirmPasswordController,
+                  controller: confirmPasswordController,
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Konfirmasi Password Baru',
                     border: OutlineInputBorder(),
                   ),
@@ -128,7 +130,7 @@ class _SettingPageState extends State<SettingPage> {
                     if (value == null || value.isEmpty) {
                       return 'Konfirmasi password tidak boleh kosong';
                     }
-                    if (value != _newPasswordController.text) {
+                    if (value != newPasswordController.text) {
                       return 'Password tidak sama';
                     }
                     return null;
@@ -140,21 +142,21 @@ class _SettingPageState extends State<SettingPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: Text('Batal'),
+              child: const Text('Batal'),
             ),
             TextButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+                if (formKey.currentState!.validate()) {
                   Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Password berhasil diubah'),
                       backgroundColor: Colors.green,
                     ),
                   );
                 }
               },
-              child: Text('Simpan'),
+              child: const Text('Simpan'),
             ),
           ],
         );
@@ -167,13 +169,13 @@ class _SettingPageState extends State<SettingPage> {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [Colors.blue[600]!, Colors.blue[400]!],
@@ -182,7 +184,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Row(
+              child: const Row(
                 children: [
                   Icon(
                     Icons.settings,
@@ -215,7 +217,7 @@ class _SettingPageState extends State<SettingPage> {
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             // Account Section
             _buildSectionCard(
               'Akun',
@@ -228,20 +230,20 @@ class _SettingPageState extends State<SettingPage> {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text('Informasi Akun'),
+                        title: const Text('Informasi Akun'),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Nama: $_userName'),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text('Email: $_userEmail'),
                           ],
                         ),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
-                            child: Text('Tutup'),
+                            child: const Text('Tutup'),
                           ),
                         ],
                       ),
@@ -256,7 +258,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // App Preferences Section
             _buildSectionCard(
               'Preferensi Aplikasi',
@@ -284,7 +286,7 @@ class _SettingPageState extends State<SettingPage> {
                     });
                     _saveSettings();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('Mode gelap akan aktif setelah restart aplikasi'),
                       ),
                     );
@@ -298,12 +300,12 @@ class _SettingPageState extends State<SettingPage> {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text('Pilih Bahasa'),
+                        title: const Text('Pilih Bahasa'),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             RadioListTile<String>(
-                              title: Text('Bahasa Indonesia'),
+                              title: const Text('Bahasa Indonesia'),
                               value: 'Bahasa Indonesia',
                               groupValue: _language,
                               onChanged: (value) {
@@ -315,7 +317,7 @@ class _SettingPageState extends State<SettingPage> {
                               },
                             ),
                             RadioListTile<String>(
-                              title: Text('English'),
+                              title: const Text('English'),
                               value: 'English',
                               groupValue: _language,
                               onChanged: (value) {
@@ -334,7 +336,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // About Section
             _buildSectionCard(
               'Tentang',
@@ -353,15 +355,15 @@ class _SettingPageState extends State<SettingPage> {
                     showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text('Bantuan'),
-                        content: Text(
+                        title: const Text('Bantuan'),
+                        content: const Text(
                           'Aplikasi Argo Driver membantu Anda menghitung tarif perjalanan berdasarkan jarak dan jenis kendaraan.\n\n'
                           'Untuk bantuan lebih lanjut, hubungi support@argodriver.com',
                         ),
                         actions: [
                           TextButton(
                             onPressed: () => Navigator.pop(context),
-                            child: Text('Tutup'),
+                            child: const Text('Tutup'),
                           ),
                         ],
                       ),
@@ -370,7 +372,7 @@ class _SettingPageState extends State<SettingPage> {
                 ),
               ],
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             // Logout Button
             SizedBox(
               width: double.infinity,
@@ -383,7 +385,7 @@ class _SettingPageState extends State<SettingPage> {
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.logout, color: Colors.white),
@@ -413,7 +415,7 @@ class _SettingPageState extends State<SettingPage> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -425,7 +427,7 @@ class _SettingPageState extends State<SettingPage> {
                 color: Colors.blue[800],
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             ...children,
           ],
         ),
@@ -443,7 +445,7 @@ class _SettingPageState extends State<SettingPage> {
       leading: Icon(icon, color: Colors.blue),
       title: Text(title),
       subtitle: Text(subtitle),
-      trailing: Icon(Icons.arrow_forward_ios, size: 16),
+      trailing: const Icon(Icons.arrow_forward_ios, size: 16),
       onTap: onTap,
     );
   }

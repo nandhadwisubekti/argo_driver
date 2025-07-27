@@ -4,6 +4,8 @@ import 'register_page.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   _LoginPageState createState() => _LoginPageState();
 }
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
       });
 
       // Simulasi proses login
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
 
       // Simpan status login
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,28 +57,28 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.grey[100],
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               // Logo dan Judul
               Center(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       decoration: BoxDecoration(
                         color: Colors.blue,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.local_taxi,
                         size: 60,
                         color: Colors.white,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       'Argo Driver',
                       style: TextStyle(
@@ -85,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
                         color: Colors.blue[800],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Masuk ke akun Anda',
                       style: TextStyle(
@@ -96,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Form Login
               Form(
                 key: _formKey,
@@ -108,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         labelText: 'Email',
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.email),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -125,14 +127,14 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     // Password Field
                     TextFormField(
                       controller: _passwordController,
                       obscureText: _obscurePassword,
                       decoration: InputDecoration(
                         labelText: 'Password',
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: const Icon(Icons.lock),
                         suffixIcon: IconButton(
                           icon: Icon(
                             _obscurePassword ? Icons.visibility : Icons.visibility_off,
@@ -159,7 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 24),
+                    const SizedBox(height: 24),
                     // Login Button
                     SizedBox(
                       width: double.infinity,
@@ -173,8 +175,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         child: _isLoading
-                            ? CircularProgressIndicator(color: Colors.white)
-                            : Text(
+                            ? const CircularProgressIndicator(color: Colors.white)
+                            : const Text(
                                 'Masuk',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -187,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               // Register Link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -203,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialPageRoute(builder: (context) => RegisterPage()),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'Daftar di sini',
                       style: TextStyle(
                         color: Colors.blue,
